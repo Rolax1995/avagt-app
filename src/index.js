@@ -1,39 +1,34 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {
-  RouterProvider,
-  createBrowserRouter,
-  redirect
-} from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './App';
 import Home from './routes/Home';
 import Login from './routes/Login';
 import SignIn from './routes/SignIn';
 import ProtectedRoute from './routes/Dashboard';
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <App/>,
-    children:[
-      { index: true, element: <Home/>},
-      { path: 'login', element: <Login/>},
-      { path: 'sigin', element: <SignIn/>},
-      { path: 'dashboard',
-        element:(
-          <ProtectedRoute>
-              Hola Mundo
-          </ProtectedRoute>
-        ), 
-      },
-    ],
-  },
-]);
-
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <RouterProvider router={router} />
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<App />}>
+        <Route index element={<Home />} />
+        <Route path="login" element={<Login />} />
+        <Route path="sigin" element={<SignIn />} />
+        <Route
+          path="dashboard"
+          element={
+            <ProtectedRoute>
+              Hola Mundo
+            </ProtectedRoute>
+          }
+        />
+      </Route>
+    </Routes>
+  </BrowserRouter>
 );
+
+
 
 
 /*import reportWebVitals from './reportWebVitals';
