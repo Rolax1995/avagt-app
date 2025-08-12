@@ -119,6 +119,7 @@ function SignIn() {
                     });
 
                     alert('Usurio creado exitosamente, se estará enviando un email de confirmación cuando este activo.');
+                    console.log(res);
                 } catch(err){
                     console.error('Error al registrar el usuario:', err);
                 }
